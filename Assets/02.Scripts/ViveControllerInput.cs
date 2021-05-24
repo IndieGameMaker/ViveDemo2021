@@ -24,7 +24,7 @@ public class ViveControllerInput : MonoBehaviour
     
     // Haptic
     private SteamVR_Action_Vibration haptic = SteamVR_Actions.default_Haptic;
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +42,11 @@ public class ViveControllerInput : MonoBehaviour
         {
             Vector2 pos = trackPadPosition.GetAxis(any);
             Debug.Log($"pos x={pos.x}, y={pos.y}");
+        }
+
+        if (grip.GetStateDown(rightHand))
+        {
+            haptic.Execute(0.2f, 0.5f, 200, 0.5f, rightHand);
         }
     }
 }
