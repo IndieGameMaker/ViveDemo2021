@@ -20,12 +20,14 @@ public class LaserPointer : MonoBehaviour
     {
         trigger = SteamVR_Actions.default_InteractUI;
 
-        
+        pose = GetComponent<SteamVR_Behaviour_Pose>();
+        hand = pose.inputSource;
+        CreateLine();
     }
 
-    // Update is called once per frame
-    void Update()
+    void CreateLine()
     {
-        
+
     }
+
 }
