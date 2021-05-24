@@ -53,6 +53,7 @@ public class CastEventToUI : MonoBehaviour
         if (clickHandler == null) return;
 
         clickHandler.OnPointerClick(new PointerEventData(EventSystem.current));
+        Debug.Log("Clicked");
     }
 
 }
