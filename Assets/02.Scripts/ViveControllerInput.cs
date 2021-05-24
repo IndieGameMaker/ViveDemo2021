@@ -18,6 +18,13 @@ public class ViveControllerInput : MonoBehaviour
     // Trackpad Touch Position (Vector2)
     private SteamVR_Action_Vector2 trackPadPosition = SteamVR_Actions.default_TrackpadPosition;
 
+    // Grap
+    private SteamVR_Action_Boolean grip = SteamVR_Input.GetBooleanAction("GrabGrip");
+    //private SteamVR_Action_Boolean grip2 = SteamVR_Actions.default_GrabGrip;
+    
+    // Haptic
+    private SteamVR_Action_Vibration haptic = SteamVR_Actions.default_Haptic;
+    
     // Update is called once per frame
     void Update()
     {
