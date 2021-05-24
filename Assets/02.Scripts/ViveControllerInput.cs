@@ -56,6 +56,7 @@ public class ViveControllerInput : MonoBehaviour
         {
             Debug.Log("HeadSet On");
         }
+        
         if (headSet.GetStateUp(SteamVR_Input_Sources.Head))
         {
             Debug.Log("HeadSet Off");
