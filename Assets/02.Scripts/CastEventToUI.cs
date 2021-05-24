@@ -17,28 +17,32 @@ public class CastEventToUI : MonoBehaviour
     // Connect Event Function
     void OnEnable()
     {
-        
+        laserPointer.PointerIn      += this.OnPointerEnter;
+        laserPointer.PointerOut     += this.OnPointerExit;
+        laserPointer.PointerClick   += this.OnPointerClick;
     }
 
     // Disconnect Event Function
     void OnDisable()
     {
-
+        laserPointer.PointerIn      -= this.OnPointerEnter;
+        laserPointer.PointerOut     -= this.OnPointerExit;
+        laserPointer.PointerClick   -= this.OnPointerClick;
     }
 
-    void OnPointerEnter()
+    void OnPointerEnter(object sender, PointerEventArgs e)
     {
 
     }
 
-    void OnPointerExit()
+    void OnPointerExit(object sender, PointerEventArgs e)
     {
 
     }
 
-    void OnPointerClick()
+    void OnPointerClick(object sender, PointerEventArgs e)
     {
-        
+
     }
 
 }
