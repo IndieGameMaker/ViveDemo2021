@@ -10,23 +10,33 @@ public class ViveControllerInput : MonoBehaviour
     public SteamVR_Input_Sources any       = SteamVR_Input_Sources.Any;
 
     //Action InteractUI
-    private SteamVR_Action_Boolean trigger = SteamVR_Actions.default_InteractUI;
+    private SteamVR_Action_Boolean trigger;
     //Action Trackpad Click
-    private SteamVR_Action_Boolean trackPadClick = SteamVR_Actions.default_Teleport;
+    private SteamVR_Action_Boolean trackPadClick;
     // Trackpad Touch
-    private SteamVR_Action_Boolean trackPadTouch = SteamVR_Actions.default_TrackpadTouch;
+    private SteamVR_Action_Boolean trackPadTouch;
     // Trackpad Touch Position (Vector2)
-    private SteamVR_Action_Vector2 trackPadPosition = SteamVR_Actions.default_TrackpadPosition;
+    private SteamVR_Action_Vector2 trackPadPosition;
 
     // Grap
     private SteamVR_Action_Boolean grip = SteamVR_Input.GetBooleanAction("GrabGrip");
     //private SteamVR_Action_Boolean grip2 = SteamVR_Actions.default_GrabGrip;
     
     // Haptic
-    private SteamVR_Action_Vibration haptic = SteamVR_Actions.default_Haptic;
+    private SteamVR_Action_Vibration haptic;
 
     // HeadSet Sensor
     private SteamVR_Action_Boolean headSet = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("HeadsetOnHead", true);
+
+    void Awake()
+    {
+        trigger = SteamVR_Actions.default_InteractUI;
+        trackPadClick = SteamVR_Actions.default_Teleport;
+        trackPadTouch = SteamVR_Actions.default_TrackpadTouch;
+        trackPadPosition = SteamVR_Actions.default_TrackpadPosition;
+        grip = SteamVR_Input.GetBooleanAction("GrabGrip");
+        haptic = SteamVR_Actions.default_Haptic;
+    }
 
     // Update is called once per frame
     void Update()
@@ -56,7 +66,7 @@ public class ViveControllerInput : MonoBehaviour
         {
             Debug.Log("HeadSet On");
         }
-        
+
         if (headSet.GetStateUp(SteamVR_Input_Sources.Head))
         {
             Debug.Log("HeadSet Off");
