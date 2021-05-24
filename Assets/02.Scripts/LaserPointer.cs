@@ -15,9 +15,14 @@ public class LaserPointer : MonoBehaviour
     // Line Color
     public Color color = Color.blue;
     public Color clickedColor = Color.green;
+
+    // Raycast Variables
+    private RaycastHit hit;
+    private Transform tr;
     
     void Start()
     {
+        tr = GetComponent<Transform>();
         trigger = SteamVR_Actions.default_InteractUI;
 
         pose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -44,6 +49,14 @@ public class LaserPointer : MonoBehaviour
         // Materials Setting
         line.material = new Material(Shader.Find("Unlit/Color"));
         line.material.color = this.color;
+    }
+
+    void Update()
+    {
+        if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance))
+        {
+            line.SetPosition(1, new Vector3(0, 0, hit.distance));
+        }
     }
 
 }
