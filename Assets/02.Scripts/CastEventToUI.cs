@@ -49,7 +49,10 @@ public class CastEventToUI : MonoBehaviour
 
     void OnPointerClick(object sender, PointerEventArgs e)
     {
+        var clickHandler = e.target.GetComponent<IPointerClickHandler>();
+        if (clickHandler == null) return;
 
+        clickHandler.OnPointerClick(new PointerEventData(EventSystem.current));
     }
 
 }
