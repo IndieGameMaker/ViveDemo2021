@@ -25,6 +25,9 @@ public class ViveControllerInput : MonoBehaviour
     // Haptic
     private SteamVR_Action_Vibration haptic = SteamVR_Actions.default_Haptic;
 
+    // HeadSet Sensor
+    private SteamVR_Action_Boolean headSet = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("HeadsetOnHead", true);
+
     // Update is called once per frame
     void Update()
     {
@@ -48,5 +51,14 @@ public class ViveControllerInput : MonoBehaviour
         {
             haptic.Execute(0.2f, 0.5f, 200, 0.5f, rightHand);
         }
+
+        if (headSet.GetStateDown(SteamVR_Input_Sources.Head))
+        {
+            Debug.Log("HeadSet On");
+        }
+        if (headSet.GetStateUp(SteamVR_Input_Sources.Head))
+        {
+            Debug.Log("HeadSet Off");
+        }        
     }
 }
