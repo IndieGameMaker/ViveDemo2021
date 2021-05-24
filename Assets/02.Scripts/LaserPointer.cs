@@ -25,9 +25,25 @@ public class LaserPointer : MonoBehaviour
         CreateLine();
     }
 
+    // LineRenderer Create
     void CreateLine()
     {
+        line = this.gameObject.AddComponent<LineRenderer>();
 
+        line.useWorldSpace = false;
+
+        // Start , End Position Setting
+        line.positionCount = 2; // Index 0, 1
+        line.SetPosition(0, Vector3.zero);  // Index 0 (0, 0, 0)
+        line.SetPosition(1, new Vector3(0, 0, maxDistance));  // Index 1 (0, 0, 30)
+
+        // Line Width Setting
+        line.startWidth = 0.03f;
+        line.endWidth   = 0.005f;
+
+        // Materials Setting
+        line.material = new Material(Shader.Find("Unlit/Color"));
+        line.material.color = this.color;
     }
 
 }
