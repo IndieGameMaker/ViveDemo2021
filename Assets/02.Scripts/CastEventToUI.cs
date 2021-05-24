@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Valve.VR;
 // SteamVR_LaserPointer
 using Valve.VR.Extras;
@@ -32,12 +33,18 @@ public class CastEventToUI : MonoBehaviour
 
     void OnPointerEnter(object sender, PointerEventArgs e)
     {
+        var enterHandler = e.target.GetComponent<IPointerEnterHandler>();
+        if (enterHandler == null) return;
 
+        enterHandler.OnPointerEnter(new PointerEventData(EventSystem.current));
     }
 
     void OnPointerExit(object sender, PointerEventArgs e)
     {
+        var exitHandler = e.target.GetComponent<IPointerExitHandler>();
+        if (exitHandler == null) return;
 
+        exitHandler.OnPointerExit(new PointerEventData(EventSystem.current));
     }
 
     void OnPointerClick(object sender, PointerEventArgs e)
