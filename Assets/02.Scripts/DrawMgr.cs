@@ -26,7 +26,14 @@ public class DrawMgr : MonoBehaviour
         if (trigger.GetStateDown(rightHand))
         {
             CreateLineObject();
-        }        
+        }
+
+        if (trigger.GetState(rightHand))
+        {
+            Vector3 position = pose.GetLocalPosition(rightHand);
+            ++line.positionCount;
+            line.SetPosition(line.positionCount-1, position);
+        }     
     }
 
     void CreateLineObject()
