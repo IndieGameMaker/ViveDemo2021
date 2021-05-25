@@ -19,11 +19,23 @@ public class LaserPointer : MonoBehaviour
     // Raycast Variables
     private RaycastHit hit;
     private Transform tr;
+
+    // Pointer Prefabs
+    private GameObject pointerPrefab;
+
+    // Pointer
+    private GameObject pointer;
     
     void Start()
     {
         tr = GetComponent<Transform>();
         trigger = SteamVR_Actions.default_InteractUI;
+
+        // Resources Folder Loading
+        pointerPrefab = Resources.Load<GameObject>("Pointer");
+        // Create Pointer
+        pointer = Instantiate<GameObject>(pointerPrefab);
+
 
         pose = GetComponent<SteamVR_Behaviour_Pose>();
         hand = pose.inputSource;
