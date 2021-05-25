@@ -83,13 +83,22 @@ public class LaserPointer : MonoBehaviour
         }
 
         // When Click Teleport 
-        if (teleport.GetStateDown(hand))
+        if (teleport.GetStateDown(hand) || Input.GetMouseButtonDown(0))
         {
-            // Screen Dark
-            SteamVR_Fade.Start(Color.black, 0);
+            if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance))
+            {
+                // Screen Dark
+                SteamVR_Fade.Start(Color.black, 0);
+                StartCoroutine(Teleport(hit.point));
+            }
         }
     }
 
-    
+    IEnumerator Teleport(Vector3 pos)
+    {
+        tr.parent.position = pos;
+        yield return new WaitForSeconds(fadeOutTime);
+        SteamVR_Fade.Start(Color.clear, 0.3f);
+    }
 
 }
