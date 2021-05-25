@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Valve.VR;
 
@@ -8,6 +9,7 @@ public class LaserPointer : MonoBehaviour
     private LineRenderer line;
 
     private SteamVR_Action_Boolean trigger;
+    private SteamVR_Action_Boolean teleport;
 
     // Line Max Distance
     public float maxDistance = 30.0f;
@@ -25,17 +27,19 @@ public class LaserPointer : MonoBehaviour
 
     // Pointer
     private GameObject pointer;
+    // Duration Dark Screen
+    public float fadeOutTime = 0.2f;
     
     void Start()
     {
         tr = GetComponent<Transform>();
         trigger = SteamVR_Actions.default_InteractUI;
+        teleport = SteamVR_Actions.default_Teleport;
 
         // Resources Folder Loading
         pointerPrefab = Resources.Load<GameObject>("Pointer");
         // Create Pointer
         pointer = Instantiate<GameObject>(pointerPrefab);
-
 
         pose = GetComponent<SteamVR_Behaviour_Pose>();
         hand = pose.inputSource;
@@ -78,7 +82,14 @@ public class LaserPointer : MonoBehaviour
             pointer.transform.rotation = Quaternion.LookRotation(tr.forward);
         }
 
-        
+        // When Click Teleport 
+        if (teleport.GetStateDown(hand))
+        {
+            // Screen Dark
+            SteamVR_Fade.Start(Color.black, 0);
+        }
     }
+
+    
 
 }
