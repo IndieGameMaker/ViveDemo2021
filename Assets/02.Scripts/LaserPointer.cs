@@ -85,7 +85,7 @@ public class LaserPointer : MonoBehaviour
         // When Click Teleport 
         if (teleport.GetStateDown(hand) || Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance))
+            if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1<<8))
             {
                 // Screen Dark
                 SteamVR_Fade.Start(Color.black, 0);
